@@ -1,0 +1,18 @@
+#!/bin/sh
+
+LOG_FILE=$(dirname $0)/logs/timecockpit-commits.csv
+
+if [ ! -s $LOG_FILE ]
+then
+	# echo "Creating time cockpit logfile in CSV format"
+	echo "Id;EventTime;ChangeSetComment;Changes;Notes;Finalized" > $LOG_FILE
+fi
+
+REPO="$(basename `git rev-parse --show-toplevel`)"
+BRANCH="$(git branch --show-current)"
+INDEX_FILES="$(git ls-files -o --exclude-standard)"
+COMMIT_MSG="$(cat $1)"
+
+echo "\"1\";\"$(date '+%Y-%m-%d %H:%M:%S')\";\"${COMMIT_MSG}\";\"${INDEX_FILES}\";\"${REPO}/${BRANCH}\";\"true\" " >> $LOG_FILE
+
+exit 0
