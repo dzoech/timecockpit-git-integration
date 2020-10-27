@@ -13,6 +13,6 @@ BRANCH="$(git branch --show-current)"
 INDEX_FILES="$(git diff --cached --name-status)"
 COMMIT_MSG="$(cat $1)"
 
-echo "\"1\";\"$(date '+%Y-%m-%d %H:%M:%S')\";\"${REPO} ${BRANCH}\";\"${COMMIT_MSG}\";\"${INDEX_FILES}\";\"true\" " >> $LOG_FILE
+echo "\"1\";\"$(date '+%Y-%m-%d %H:%M:%S')\";\"${COMMIT_MSG}\";\"${REPO} ${BRANCH}\";\"${INDEX_FILES}\";\"true\" " >> $LOG_FILE
 
 exit 0
